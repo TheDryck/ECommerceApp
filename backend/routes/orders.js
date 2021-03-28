@@ -78,7 +78,7 @@ router.post('/new', (req, res) => {
           }
 
           //Record the order details of the new order
-          database.table('order_details').insert({
+          database.table('orders_details').insert({
             order_id: newOrderId,
             product_id: p.id,
             quantity: inCart
@@ -106,7 +106,7 @@ router.post('/new', (req, res) => {
 
 //Fake payment gateway
 router.post('/payment', (req, res) => {
-  setTimeout(()=>{res.status(200).json({success: true})}, 3000)
+  setTimeout(()=>{res.status(200).json({success: true})}, 3000);
 })
 
 module.exports = router;
