@@ -1,6 +1,10 @@
 const express = require('express');
+const app = express();
 const router = express.Router();
 const {database} = require('../config/helpers');
+const cors = require('cors');
+
+app.use(cors())
 
 /* GET all products */
 router.get('/', function(req, res) {
@@ -26,6 +30,7 @@ router.get('/', function(req, res) {
       'c.title as category',
       'p.title as name',
       'p.price',
+      'p.description',
       'p.quantity',
       'p.image',
       'p.id'
@@ -54,6 +59,7 @@ router.get('/:prodId', (req, res) =>{
     'c.title as category',
     'p.title as name',
     'p.price',
+    'p.description',
     'p.quantity',
     'p.image',
     'p.images',
@@ -93,6 +99,7 @@ router.get('/category/:catName', (req, res) => {
     'c.title as category',
     'p.title as name',
     'p.price',
+    'p.description',
     'p.quantity',
     'p.image',
     'p.id'

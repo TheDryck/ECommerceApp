@@ -8,6 +8,12 @@ const app = express();
 
 app.use(express.json());
 
+app.use(cors({
+  origin: "*",
+  methods:['GET', 'POST', 'PATCH', 'DELETE', 'PUT'],
+  allowedHeaders: 'Content-Type, Authorization, Origin, X-Requested-With, Accept'
+}))
+
 //Import routes
 const productsRoute = require('./routes/products');
 const ordersRoute = require('./routes/orders');
@@ -21,11 +27,7 @@ app.use('/api/orders', ordersRoute);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(cors({
-  origin: "*",
-  methods:['GET', 'POST', 'PATCH', 'DELETE', 'PUT'],
-  allowedHeaders: 'Content-Type, Authorization, Origin, X-Requested-With, Accept'
-}))
+
 
 app.use(logger('dev'));
 app.use(express.json());
